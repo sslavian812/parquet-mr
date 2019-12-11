@@ -56,6 +56,7 @@ import static org.apache.parquet.Preconditions.checkNotNull;
 import static org.apache.parquet.schema.ConversionPatterns.listType;
 import static org.apache.parquet.schema.ConversionPatterns.mapType;
 import static org.apache.parquet.schema.LogicalTypeAnnotation.enumType;
+import static org.apache.parquet.schema.LogicalTypeAnnotation.intType;
 import static org.apache.parquet.schema.LogicalTypeAnnotation.stringType;
 import static org.apache.parquet.schema.PrimitiveType.PrimitiveTypeName.BINARY;
 import static org.apache.parquet.schema.PrimitiveType.PrimitiveTypeName.BOOLEAN;
@@ -304,7 +305,7 @@ class ThriftSchemaConvertVisitor implements ThriftType.StateVisitor<ConvertedFie
 
   @Override
   public ConvertedField visit(ByteType byteType, State state) {
-    return visitPrimitiveType(INT32, state);
+    return visitPrimitiveType(INT32, intType(8, true), state);
   }
 
   @Override
@@ -314,7 +315,7 @@ class ThriftSchemaConvertVisitor implements ThriftType.StateVisitor<ConvertedFie
 
   @Override
   public ConvertedField visit(I16Type i16Type, State state) {
-    return visitPrimitiveType(INT32, state);
+    return visitPrimitiveType(INT32, intType(16, true), state);
   }
 
   @Override
